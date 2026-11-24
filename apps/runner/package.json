@@ -1,0 +1,19 @@
+{
+  "name": "@taa/runner",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local AI runner: answers queued analyses on your PC with Antigravity CLI, Gemini CLI or Claude Code (your subscriptions, no API keys).",
+  "scripts": {
+    "start": "tsx src/cli.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@taa/agents": "*",
+    "@taa/shared": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0"
+  }
+}

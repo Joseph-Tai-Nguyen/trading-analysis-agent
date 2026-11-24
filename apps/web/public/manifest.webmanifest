@@ -1,0 +1,15 @@
+{
+  "name": "Trading Analysis Agent",
+  "short_name": "TradeAgent",
+  "description": "Portfolio, watchlists and multi-agent AI stock analysis.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f7f7f5",
+  "theme_color": "#0f172a",
+  "icons": [
+    { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icons/icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

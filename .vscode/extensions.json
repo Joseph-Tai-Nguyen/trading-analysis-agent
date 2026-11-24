@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "vitest.explorer",
+    "anthropic.claude-code",
+    "editorconfig.editorconfig"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "trading-analysis-agent",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-10-01",
+  "observability": { "enabled": true },
+
+  // The React PWA (apps/web) is built to ../web/dist and served as static assets.
+  // /api/* and /auth/* always hit the Worker; everything else is the SPA.
+  "assets": {
+    "directory": "../web/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/auth/*"]
+  },
+
+  // Sessions, encrypted Google refresh tokens, and the dev-mode data store.
+  // Create with:  npx wrangler kv namespace create KV   — then paste the id here.
+  "kv_namespaces": [
+    { "binding": "KV", "id": "REPLACE_WITH_KV_NAMESPACE_ID" }
+  ],
+
+  // Daily watchlist sweep (quick analysis) — 21:30 UTC Mon–Fri, after the US close.
+  "triggers": { "crons": ["30 21 * * 1-5"] },
+
+  // Non-secret config. Secrets go in .dev.vars (local) or `wrangler secret put` (prod).
+  "vars": {
+    "APP_URL": "",
+    "ALLOWED_EMAILS": "",
+    "DEV_AUTH_BYPASS": "false",
+    // "runner" = the local AI runner (apps/runner) answers queued jobs; "api" = the Worker calls
+    // Gemini/Claude; "auto" = api when an AI key is set, otherwise runner.
+    "AI_ENGINE": "auto",
+    "AI_PRIMARY": "gemini",
+    "GEMINI_MODEL_FAST": "gemini-flash-latest",
+    "GEMINI_MODEL_DEEP": "gemini-pro-latest",
+    "CLAUDE_MODEL_FAST": "claude-haiku-5-5",
+    "CLAUDE_MODEL_DEEP": "claude-sonnet-5-5",
+    "CRON_MAX_SYMBOLS": "10"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.formatOnSave": true,
+  "files.eol": "\n",
+  "files.associations": { "wrangler.jsonc": "jsonc" },
+  "search.exclude": { "**/node_modules": true, "**/dist": true, "**/.wrangler": true }
+}

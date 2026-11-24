@@ -1,0 +1,40 @@
+# Copy to apps/worker/.dev.vars for local development (never commit .dev.vars).
+# In production set each secret with:  npx wrangler secret put <NAME>
+
+# --- App ---
+APP_URL=http://localhost:5173
+# Comma-separated Google accounts allowed to sign in (REQUIRED — protects your API keys).
+ALLOWED_EMAILS=you@gmail.com
+# Random 32+ char string used to encrypt tokens & sign sessions:
+#   node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"
+SESSION_SECRET=change-me-to-a-long-random-string
+# true = skip Google login and store data in local KV (offline dev / UI work).
+DEV_AUTH_BYPASS=true
+
+# --- Google OAuth (Google Cloud Console → APIs & Services → Credentials) ---
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+# --- AI ---
+# Where analyses run:
+#   runner = the local AI runner on your PC (Antigravity CLI / Gemini CLI / Claude Code,
+#            your subscriptions, no keys) — see apps/runner/runner.env.example
+#   api    = this Worker calls the APIs below
+# Leave empty for auto: api if a key below is set, otherwise runner.
+AI_ENGINE=
+# Cloud API keys (Gemini primary, Claude fallback). Not needed with the local runner.
+# https://aistudio.google.com/apikey
+GEMINI_API_KEY=
+# https://console.anthropic.com/settings/keys
+ANTHROPIC_API_KEY=
+AI_PRIMARY=gemini
+
+# --- Market data ---
+# https://finnhub.io/dashboard  (quotes, search, profile, fundamentals, news)
+FINNHUB_API_KEY=
+# https://twelvedata.com/account/api-keys  (daily candles, quote fallback)
+TWELVEDATA_API_KEY=
+
+# --- Optional notifications for the daily cron report ---
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_CHAT_ID=
